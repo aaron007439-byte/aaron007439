@@ -22,10 +22,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, "Microsoft JhengHei";
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -56,18 +52,22 @@
             font-size: 1.1rem;
         }
 
-        .container {
+        .page {
+            display: none;
             width: 100%;
             max-width: 1000px;
-            margin-bottom: 3rem;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .grid-container {
-            display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             padding: 1rem;
-            width: 100%;
         }
 
         .card {
@@ -127,7 +127,6 @@
             text-align: center;
             transition: background-color 0.2s ease;
             width: 80%;
-            display: block;
         }
 
         .card:hover .card-btn {
@@ -136,11 +135,8 @@
 
         .page-content {
             max-width: 800px;
-            margin: 5rem auto 0 auto;
+            margin: 0 auto;
             width: 100%;
-            padding-top: 3rem;
-            border-top: 2px solid #334155;
-            display: block !important;
         }
 
         .back-btn {
@@ -149,7 +145,10 @@
             text-decoration: none;
             margin-bottom: 1.5rem;
             font-weight: bold;
+            background: none;
+            border: none;
             font-size: 1rem;
+            cursor: pointer;
         }
 
         .back-btn:hover { text-decoration: underline; }
@@ -174,31 +173,12 @@
         .alert-text { color: var(--accent-color); font-weight: bold; }
         .footer-note { text-align: center; margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem; }
 
-        .map-image-container {
-            width: 100%;
-            text-align: center;
-            background-color: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .map-image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-        }
-
         footer {
-            margin-top: 4rem;
+            margin-top: 3rem;
             text-align: center;
             color: var(--text-muted);
             font-size: 0.85rem;
             width: 100%;
-            border-top: 1px solid #1e293b;
-            padding-top: 1.5rem;
         }
 
         @media (max-width: 600px) {
@@ -210,98 +190,120 @@
 </head>
 <body>
 
-    <header id="top">
+    <header>
         <h1>萬能工商資訊科</h1>
-        <p>國家檢定即測即評專區 - 入口網站</p>
+        <p id="header-subtitle">國家檢定即測即評專區 - 入口網站</p>
     </header>
 
-    <div class="container">
-        <!-- 主首頁面卡片選單 -->
-        <div class="grid-container">
-            <a href="#subject-section" class="card">
-                <div class="card-icon">📝</div>
-                <div class="card-content">
-                    <h2>學科報到</h2>
-                    <p>請於測試前 30 分鐘辦理報到，務必攜帶准考證與附照片之身分證件正本。</p>
-                </div>
-                <div class="card-btn">瀏覽注意事項</div>
-            </a>
-
-            <a href="#technical-section" class="card">
-                <div class="card-icon">💻</div>
-                <div class="card-content">
-                    <h2>術科報到</h2>
-                    <p>進入試場前請確認服裝儀容，並檢查自備工具是否符合資訊類檢定規範。</p>
-                </div>
-                <div class="card-btn">瀏覽環境規範</div>
-            </a>
-
-            <a href="https://wdasec.gov.tw" target="_blank" class="card">
-                <div class="card-icon">🏛️</div>
-                <div class="card-content">
-                    <h2>術科電子抽籤</h2>
-                    <p>連結至勞動部技能檢定中心官方網站。正式測試前將由監場人員指引抽取題組與崗位。</p>
-                </div>
-                <div class="card-btn">前往技能檢定中心</div>
-            </a>
+    <!-- 主首頁面 -->
+    <main id="home-page" class="page grid-container" style="display: grid;">
+        <div class="card" onclick="switchPage('subject-page', '學科報到注意事項')">
+            <div class="card-icon">📝</div>
+            <div class="card-content">
+                <h2>學科報到</h2>
+                <p>請於測試前 30 分鐘辦理報到，務必攜帶准考證與附照片之身分證件正本。</p>
+            </div>
+            <button class="card-btn">進入報到</button>
         </div>
 
-        <!-- 學科報到詳細內容區塊 -->
-        <div id="subject-section" class="page-content">
-            <a href="#top" class="back-btn">← 返回頂部選單</a>
-            <h1>📝 學科報到與應試注意事項</h1>
-
-            <div class="section">
-                <h2>⏱️ 報到與入場時間</h2>
-                <ul>
-                    <li><strong>提前 30 分鐘報到</strong>：應檢人應於測試前 30 分鐘到達考場辦理報到手續。</li>
-                    <li><strong>預備鈴響就座</strong>：預備鈴響時，請立即依場次座號就座。</li>
-                    <li><strong>遲到 15 分鐘不得入場</strong>：測試開始後<span class="alert-text">超過 15 分鐘</span>尚未入場者，視同棄權，不得入場應試。</li>
-                    <li><strong>入場後限制</strong>：測試時間開始後 15 分鐘內，不得提早出場。</li>
-                </ul>
+        <div class="card" onclick="switchPage('technical-page', '術科報到環境規範')">
+            <div class="card-icon">💻</div>
+            <div class="card-content">
+                <h2>術科報到</h2>
+                <p>進入試場前請確認服裝儀容，並檢查自備工具是否符合資訊類檢定規範。</p>
             </div>
-
-            <div class="section">
-                <h2>🪪 必備應試證件</h2>
-                <ul>
-                    <li><strong>准考證</strong>。</li>
-                    <li><strong>身分證明文件正本</strong>：必須攜帶附有照片的有效身分證件（如：國民身分證、居留證、駕照、健保卡或護照）。<span class="alert-text">⚠️ 注意：學生證不可作為身分證明文件。</span></li>
-                    <li>若當日未攜帶身分證件，需簽具切結書方可應試，但若准考證與身分證件同時都未攜帶，則不得入場。</li>
-                </ul>
-            </div>
-
-            <div class="section">
-                <h2>💻 入座確認與應試規範</h2>
-                <ul>
-                    <li><strong>核對電腦資料</strong>：就座後請將證件置於桌面左前角，並<strong>自行核對電腦螢幕對話框內的個人資料、場次座號及報考職類</strong>是否正確。</li>
-                    <li><strong>通訊設備嚴禁隨身攜帶</strong>：測試中嚴禁將行動電話、穿戴式裝置或其他通訊攝錄器材隨身攜帶、置於抽屜或座位旁，違反者學科成績將被<span class="alert-text">扣除 20 分或予以扣考</span>。</li>
-                    <li><strong>考場內禁止飲食</strong>：測試期間不得飲食（含喝水）、抽菸或嚼食口香糖。</li>
-                </ul>
-            </div>
-
-            <!-- 學科圖檔顯示區塊 - 僅更新此路徑 -->
-            <div class="section">
-                <h2>🪑 即測即評即發證 學科測試崗位圖</h2>
-                <div class="map-image-container">
-                    <img src="./subject-map.png" alt="學科測試崗位圖">
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>💰 合格發證準備</h2>
-                <ul>
-                    <li><strong>準備 160 元發證費</strong>：即測即評當天學、術科皆合格即可現場領證，請務必提早準備好 <strong>新臺幣 160 元</strong> 的證照規費。</li>
-                </ul>
-            </div>
-            <p class="footer-note">萬能工商 資訊科 技能檢定試務中心 關心您</p>
+            <button class="card-btn">進入報到</button>
         </div>
 
-        <!-- 術科報到詳細內容區塊 -->
-        <div id="technical-section" class="page-content">
-            <a href="#top" class="back-btn">← 返回頂部選單</a>
-            <h1>💻 資訊類術科報到與環境規範</h1>
+        <a href="https://www.wdasec.gov.tw" target="_blank" class="card">
+            <div class="card-icon">🏛️</div>
+            <div class="card-content">
+                <h2>術科電子抽籤</h2>
+                <p>連結至勞動部技能檢定中心官方網站。正式測試前將由監場人員指引抽取題組與崗位。</p>
+            </div>
+            <button class="card-btn">前往技能檢定中心</button>
+        </a>
+    </main>
 
-            <div class="section">
-                <h2>⏱️ 報到與時間限制</h2>
-                <ul>
-                    <li><strong>以術科通知單時間為準</strong>：術科報到時間不一定與學科相同，請務必仔細核對。</li>
+    <!-- 學科報到內頁 -->
+    <div id="subject-page" class="page page-content">
+        <button class="back-btn" onclick="goHome()">← 返回首頁</button>
+        <h1>📝 學科報到與應試注意事項</h1>
+
+        <div class="section">
+            <h2>⏱️ 報到與入場時間</h2>
+            <ul>
+                <li><strong>提前 30 分鐘報到</strong>：應檢人應於測試前 30 分鐘到達考場辦理報到手續。</li>
+                <li><strong>預備鈴響就座</strong>：預備鈴響時，請立即依場次座號就座。</li>
+                <li><strong>遲到 15 分鐘不得入場</strong>：測試開始後<span class="alert-text">超過 15 分鐘</span>尚未入場者，視同棄權，不得入場應試。</li>
+                <li><strong>入場後限制</strong>：測試時間開始後 15 分鐘內，不得提早出場。</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🪪 必備應試證件</h2>
+            <ul>
+                <li><strong>准考證</strong>。</li>
+                <li><strong>身分證明文件正本</strong>：必須攜帶附有照片的有效身分證件（如：國民身分證、居留證、駕照、健保卡或護照）。<span class="alert-text">⚠️ 注意：學生證不可作為身分證明文件。</span></li>
+                <li>若當日未攜帶身分證件，需簽具切結書方可應試，但若准考證與身分證件同時都未攜帶，則不得入場。</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>💻 入座確認與應試規範</h2>
+            <ul>
+                <li><strong>核對電腦資料</strong>：就座後請將證件置於桌面左前角，並<strong>自行核對電腦螢幕對話框內的個人資料、場次座號及報考職類</strong>是否正確。</li>
+                <li><strong>通訊設備嚴禁隨身攜帶</strong>：測試中嚴禁將行動電話、穿戴式裝置或其他通訊攝錄器材隨身攜帶、置於抽屜或座位旁，違反者學科成績將被<span class="alert-text">扣除 20 分或予以扣考</span>。</li>
+                <li><strong>考場內禁止飲食</strong>：測試期間不得飲食（含喝水）、抽菸或嚼食口香糖。</li>
+            </ul>
+        </div>
+<div class="section">
+    <h2>🪪 即測即評即發證 學科測試崗位圖</h2>
+    <div class="map-image-container">
+        <img src="./subject-map.jpg" alt="學科測試崗位圖">
+    </div>
+</div>
+        <div class="section">
+            <h2>💰 合格發證準備</h2>
+            <ul>
+                <li><strong>準備 160 元發證費</strong>：即測即評當天學、術科皆合格即可現場領證，請務必提早準備好 <strong>新臺幣 160 元</strong> 的證照規費。</li>
+            </ul>
+        </div>
+        <p class="footer-note">萬能工商 資訊科 技能檢定試務中心 關心您</p>
+    </div>
+
+    <!-- 術科報到內頁 -->
+    <div id="technical-page" class="page page-content">
+        <button class="back-btn" onclick="goHome()">← 返回首頁</button>
+        <h1>💻 資訊類術科報到與環境規範</h1>
+
+        <div class="section">
+            <h2>⏱️ 報到與時間限制</h2>
+            <ul>
+                <li><strong>以術科通知單時間為準</strong>：術科報到時間不一定與學科相同，請務必仔細核對。</li>
+                <li><strong>遲到 15 分鐘不得入場</strong>：術科測試開始後<span class="alert-text">超過 15 分鐘</span>尚未入場者，視同棄權。</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🖥️ 資訊類專屬：環境測試時間（極重要）</h2>
+            <ul>
+                <li><strong>確認輸入法與鍵滑鼠</strong>：檢查是否有習慣的輸入法（新注音、嘸蝦米、倉頡等），按鍵滑鼠是否順暢。</li>
+                <li><strong>確認軟體版本與工具</strong>：核對電腦內軟體（如 MS Office、虛擬軟體、作業系統 等）是否為簡章公告版本。</li>
+                <li><strong>有問題立即反應</strong>：正式考試開始後，若因「未安裝輸入法」或「硬體故障」影響作答，考場恕不補時。</li>
+            </ul>
+        </div>
+<!-- 🔍 術科真實圖檔顯示區塊 -->
+<div class="section">
+    <h2>🪑 硬體裝修丙級 術科測試崗位圖</h2>
+    <div class="map-image-container">
+        <img src="./tech-map.jpg" alt="術科測試崗位圖">
+    </div>
+</div>
+        <!-- 💾 關鍵存檔與路徑規範區塊 -->
+        <div class="section">
+            <h2>💾 關鍵存檔與路徑規範</h2>
+            <ul>
+                <li><strong>嚴格遵守根目錄規範</strong>：必須儲存於題目指定的唯一路徑（如 `D:\WebXX\`）。<span class="alert-text">存錯地方或資料夾打錯字，評分軟體將以 0 分計算。</span></li>
+                <li><strong>隨時養成存檔習慣（Ctrl + S）</strong>：防範軟體當機，每完成一個小步驟請立即存檔。</li>
+                <li><strong>格式與列印檢查</strong>：若該職類需列印，請仔細檢視頁首頁尾格式、姓名准考證號，確認無亂碼再行列印。</li>
