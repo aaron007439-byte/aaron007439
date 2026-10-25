@@ -64,7 +64,6 @@
             margin-bottom: 3rem;
         }
 
-        /* 首頁卡片選單排版 */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -84,6 +83,7 @@
             flex-direction: column;
             text-decoration: none;
             color: var(--text-color);
+            cursor: pointer;
         }
 
         .card:hover {
@@ -136,14 +136,12 @@
             background-color: var(--primary-hover);
         }
 
-        /* 詳細說明頁面區塊 */
         .page-content {
             max-width: 800px;
-            margin: 5rem auto 0 auto;
+            margin: 4rem auto 0 auto;
             width: 100%;
-            padding-top: 3rem;
-            border-top: 2px solid #334155;
-            display: block !important; /* 強制在單頁中顯示以供網頁空間定位 */
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
         }
 
         .back-btn {
@@ -177,56 +175,83 @@
         .alert-text { color: var(--accent-color); font-weight: bold; }
         .footer-note { text-align: center; margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem; }
 
-        /* 考場座位區專屬相容性樣式 */
+        /* 考場座位配置矩陣專屬樣式 */
+        .seat-map-podium {
+            background-color: #0f172a;
+            border: 1px dashed var(--primary-color);
+            text-align: center;
+            padding: 0.75rem;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+
         .responsive-table-wrapper {
-            width: 100% !important;
-            overflow-x: auto !important;
-            display: block !important;
-            margin: 1.5rem 0;
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: 1rem;
             border-radius: 8px;
             border: 1px solid #334155;
             background-color: #0f172a;
-            padding: 1.2rem;
+            padding: 1rem;
         }
 
-        /* 學科 5x10 網格配置 */
+        /* 學科 5x10 網格樣式 (由上往下遞減，走道分離) */
         .subject-grid {
-            display: grid !important;
-            grid-template-columns: repeat(5, 1fr) !important;
-            gap: 0.6rem 1.2rem !important;
-            min-width: 600px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem 1.2rem;
+            min-width: 650px;
             text-align: center;
         }
 
-        /* 術科 4x6 網格配置 */
+        /* 術科 4x6 網格樣式 (由下往上遞增) */
         .tech-grid {
-            display: grid !important;
-            grid-template-columns: repeat(4, 1fr) !important;
-            gap: 0.8rem 1.5rem !important;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem 1.5rem;
             min-width: 500px;
             text-align: center;
         }
 
+        .grid-gap-row {
+            grid-column: span 5;
+            height: 20px;
+            position: relative;
+        }
+        .grid-gap-row::before {
+            content: "【 中央走道 】";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+        }
+
         .seat-cell {
-            background-color: var(--card-bg) !important;
-            border: 1px solid #475569 !important;
+            background-color: var(--card-bg);
+            border: 1px solid #475569;
             border-radius: 6px;
             padding: 0.6rem 0.4rem;
             font-size: 0.95rem;
-            color: #fff !important;
+            color: #fff;
             font-weight: bold;
-            display: block !important;
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
         }
         
         .seat-cell.active-seat {
-            border-left: 4px solid var(--seat-active) !important;
+            border-left: 4px solid var(--seat-active);
         }
 
         .seat-cell.spare-seat {
-            border-left: 4px solid var(--seat-spare) !important;
-            color: var(--seat-spare) !important;
-            background-color: rgba(245, 158, 11, 0.05) !important;
+            border-left: 4px solid var(--seat-spare);
+            color: var(--seat-spare);
+            background-color: rgba(245, 158, 11, 0.05);
         }
 
         .map-title-tag {
@@ -234,7 +259,7 @@
             font-weight: bold;
             font-size: 1.1rem;
             color: #fff;
-            margin: 1rem 0;
+            margin-top: 1rem;
             letter-spacing: 1px;
         }
 
@@ -265,7 +290,6 @@
     <div class="container">
         <!-- 主首頁面卡片選單 -->
         <div class="grid-container">
-            <!-- 學科報到超連結 -->
             <a href="#subject-section" class="card">
                 <div class="card-icon">📝</div>
                 <div class="card-content">
@@ -275,7 +299,6 @@
                 <div class="card-btn">瀏覽注意事項</div>
             </a>
 
-            <!-- 術科報到超連結 -->
             <a href="#technical-section" class="card">
                 <div class="card-icon">💻</div>
                 <div class="card-content">
@@ -285,7 +308,6 @@
                 <div class="card-btn">瀏覽環境規範</div>
             </a>
 
-            <!-- 術科電子抽籤 (外部政府主頁導向) -->
             <a href="https://wdasec.gov.tw" target="_blank" class="card">
                 <div class="card-icon">🏛️</div>
                 <div class="card-content">
@@ -306,12 +328,3 @@
                 <ul>
                     <li><strong>提前 30 分鐘報到</strong>：應檢人應於測試前 30 分鐘到達考場辦理報到手續。</li>
                     <li><strong>預備鈴響就座</strong>：預備鈴響時，請立即依場次座號就座。</li>
-                    <li><strong>遲到 15 分鐘不得入場</strong>：測試開始後<span class="alert-text">超過 15 分鐘</span>尚未入場者，視同棄權，不得入場應試。</li>
-                    <li><strong>入場後限制</strong>：測試時間開始後 15 分鐘內，不得提早出場。</li>
-                </ul>
-            </div>
-
-            <div class="section">
-                <h2>🪪 必備應試證件</h2>
-                <ul>
-                    <li><strong>准考證</strong>。</li>
