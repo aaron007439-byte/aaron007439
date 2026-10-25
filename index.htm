@@ -13,8 +13,6 @@
             --text-color: #f8fafc;
             --text-muted: #94a3b8;
             --accent-color: #ef4444;
-            --seat-active: #10b981;
-            --seat-spare: #f59e0b;
         }
 
         * {
@@ -83,7 +81,6 @@
             flex-direction: column;
             text-decoration: none;
             color: var(--text-color);
-            cursor: pointer;
         }
 
         .card:hover {
@@ -187,80 +184,33 @@
             color: #fff;
             letter-spacing: 2px;
         }
-
-        .responsive-table-wrapper {
-            width: 100%;
-            overflow-x: auto;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            border: 1px solid #334155;
-            background-color: #0f172a;
-            padding: 1rem;
-        }
-
-        /* 學科 5x10 網格樣式 (由上往下遞減，走道分離) */
-        .subject-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 0.5rem 1.2rem;
-            min-width: 650px;
-            text-align: center;
-        }
-
-        /* 術科 4x6 網格樣式 (由下往上遞增) */
-        .tech-grid {
+        .seat-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 0.8rem 1.5rem;
-            min-width: 500px;
+            gap: 1rem;
             text-align: center;
         }
-
-        .grid-gap-row {
-            grid-column: span 5;
-            height: 20px;
-            position: relative;
+        .seat-column-header {
+            font-weight: bold;
+            color: var(--primary-color);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #334155;
+            font-size: 0.9rem;
         }
-        .grid-gap-row::before {
-            content: "【 中央走道 】";
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            letter-spacing: 4px;
-        }
-
-        .seat-cell {
-            background-color: var(--card-bg);
-            border: 1px solid #475569;
+        .seat-node {
+            background-color: #0f172a;
+            border: 1px solid #334155;
             border-radius: 6px;
-            padding: 0.6rem 0.4rem;
+            padding: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .seat-node span {
+            display: block;
+            font-weight: bold;
+            color: #fff;
             font-size: 0.95rem;
-            color: #fff;
-            font-weight: bold;
-            letter-spacing: 1px;
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-        }
-        
-        .seat-cell.active-seat {
-            border-left: 4px solid var(--seat-active);
-        }
-
-        .seat-cell.spare-seat {
-            border-left: 4px solid var(--seat-spare);
-            color: var(--seat-spare);
-            background-color: rgba(245, 158, 11, 0.05);
-        }
-
-        .map-title-tag {
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: #fff;
-            margin-top: 1rem;
-            letter-spacing: 1px;
+            margin-bottom: 2px;
         }
 
         footer {
@@ -277,6 +227,7 @@
             header h1 { font-size: 1.8rem; }
             .grid-container { gap: 1.5rem; }
             .page-content h1 { font-size: 1.6rem; }
+            .seat-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
         }
     </style>
 </head>
@@ -328,3 +279,30 @@
                 <ul>
                     <li><strong>提前 30 分鐘報到</strong>：應檢人應於測試前 30 分鐘到達考場辦理報到手續。</li>
                     <li><strong>預備鈴響就座</strong>：預備鈴響時，請立即依場次座號就座。</li>
+                    <li><strong>遲到 15 分鐘不得入場</strong>：測試開始後<span class="alert-text">超過 15 分鐘</span>尚未入場者，視同棄權，不得入場應試。</li>
+                    <li><strong>入場後限制</strong>：測試時間開始後 15 分鐘內，不得提早出場。</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>🪪 必備應試證件</h2>
+                <ul>
+                    <li><strong>准考證</strong>。</li>
+                    <li><strong>身分證明文件正本</strong>：必須攜帶附有照片的有效身分證件（如：國民身分證、駕照、健保卡或護照）。<span class="alert-text">⚠️ 注意：學生證不可作為身分證明文件。</span></li>
+                    <li>若當日未攜帶身分證件，需簽具切結書方可應試，但若准考證與身分證件同時都未攜帶，則不得入場。</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>💻 入座確認與應試規範</h2>
+                <ul>
+                    <li><strong>核對電腦資料</strong>：就座後請將證件置於桌面左前角，並<strong>自行核對電腦螢幕對話框內的個人資料、場次座號及報考職類</strong>是否正確。</li>
+                    <li><strong>通訊設備嚴禁隨身攜帶</strong>：測試中嚴禁將行動電話、穿戴式裝置或其他通訊攝錄器材隨身攜帶、置於抽屜或座位旁，違反者學科成績將被<span class="alert-text">扣除 20 分或予以扣考</span>。</li>
+                    <li><strong>考場內禁止飲食</strong>：測試期間不得飲食（含喝水）、抽菸或嚼食口香糖。</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>💰 合格發證準備</h2>
+                <ul>
+                    <li><strong>準備 160 元發證費</strong>：即測即評當天學、術科皆合格即可現場領證，請務必提早準備好 <strong>新臺幣 160 元</strong> 的證照規費。</li>
