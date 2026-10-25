@@ -79,9 +79,9 @@
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-            text-decoration: none;
             color: var(--text-color);
             cursor: pointer;
+            user-select: none;
         }
 
         .card:hover {
@@ -197,32 +197,35 @@
 
     <!-- 主首頁面 -->
     <main id="home-page" class="page grid-container" style="display: grid;">
+        <!-- 學科報到按鈕卡片 -->
         <div class="card" onclick="switchPage('subject-page', '學科報到注意事項')">
             <div class="card-icon">📝</div>
             <div class="card-content">
                 <h2>學科報到</h2>
                 <p>請於測試前 30 分鐘辦理報到，務必攜帶准考證與附照片之身分證件正本。</p>
             </div>
-            <button class="card-btn">進入報到</button>
+            <div class="card-btn">進入報到</div>
         </div>
 
+        <!-- 術科報到按鈕卡片 -->
         <div class="card" onclick="switchPage('technical-page', '術科報到環境規範')">
             <div class="card-icon">💻</div>
             <div class="card-content">
                 <h2>術科報到</h2>
                 <p>進入試場前請確認服裝儀容，並檢查自備工具是否符合資訊類檢定規範。</p>
             </div>
-            <button class="card-btn">進入報到</button>
+            <div class="card-btn">進入報到</div>
         </div>
 
-        <a href="https://wdasec.gov.tw" target="_blank" class="card">
+        <!-- 術科電子抽籤按鈕卡片 (點擊直接觸發外連) -->
+        <div class="card" onclick="window.open('https://wdasec.gov.tw', '_blank')">
             <div class="card-icon">🏛️</div>
             <div class="card-content">
                 <h2>術科電子抽籤</h2>
                 <p>連結至勞動部技能檢定中心官方網站。正式測試前將由監場人員指引抽取題組與崗位。</p>
             </div>
-            <button class="card-btn">前往技能檢定中心</button>
-        </a>
+            <div class="card-btn">前往技能檢定中心</div>
+        </div>
     </main>
 
     <!-- 學科報到內頁 -->
@@ -289,10 +292,8 @@
             </ul>
         </div>
 
-        <!-- 💾 關鍵存檔與路徑規範區塊 -->
         <div class="section">
             <h2>💾 關鍵存檔與路徑規範</h2>
             <ul>
                 <li><strong>嚴格遵守根目錄規範</strong>：必須儲存於題目指定的唯一路徑（如 `D:\WebXX\`）。<span class="alert-text">存錯地方或資料夾打錯字，評分軟體將以 0 分計算。</span></li>
                 <li><strong>隨時養成存檔習慣（Ctrl + S）</strong>：防範軟體當機，每完成一個小步驟請立即存檔。</li>
-                <li><strong>格式與列印檢查</strong>：若該職類需列印，請仔細檢視頁首頁尾格式、姓名准考證號，確認無亂碼再行列印。</li>
