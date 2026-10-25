@@ -52,20 +52,12 @@
             font-size: 1.1rem;
         }
 
-        /* 頁面切換控制 */
+        /* 預設隱藏所有頁面區塊 */
         .page {
             display: none;
             width: 100%;
             max-width: 1000px;
             animation: fadeIn 0.3s ease-in-out;
-        }
-
-        .page.active {
-            display: grid;
-        }
-
-        .page-content.active {
-            display: block;
         }
 
         @keyframes fadeIn {
@@ -206,8 +198,8 @@
         <p id="header-subtitle">國家檢定即測即評專區 - 入口網站</p>
     </header>
 
-    <!-- 主首頁面 -->
-    <main id="home-page" class="page grid-container active">
+    <!-- 主首頁面 (預設為顯示) -->
+    <main id="home-page" class="page grid-container" style="display: grid;">
         <!-- 學科報到按鈕 -->
         <div class="card" onclick="switchPage('subject-page', '學科報到注意事項')">
             <div class="card-icon">📝</div>
@@ -268,7 +260,7 @@
             <ul>
                 <li><strong>核對電腦資料</strong>：就座後請將證件置於桌面左前角，並<strong>自行核對電腦螢幕對話框內的個人資料、場次座號及報考職類</strong>是否正確。</li>
                 <li><strong>通訊設備嚴禁隨身攜帶</strong>：測試中嚴禁將行動電話、穿戴式裝置或其他通訊攝錄器材隨身攜帶、置於抽屜或座位旁，違反者學科成績將被<span class="alert-text">扣除 20 分或予以扣考</span>。</li>
-                <li><strong>考場內禁止飲食</strong>：測試期間不得飲食（含喝水）、抽菸或嚼食口信糖。</li>
+                <li><strong>考場內禁止飲食</strong>：測試期間不得飲食（含喝水）、抽菸或嚼食口香糖。</li>
             </ul>
         </div>
 
@@ -306,3 +298,4 @@
         <div class="section">
             <h2>💾 關鍵存檔與路徑規範</h2>
             <ul>
+                <li><strong>嚴格遵守根目錄規範</strong>：必須儲存於題目指定的唯一路徑（如 `D:\WebXX\`）。<span class="alert-text">存錯地方或資料夾打錯字，評分軟體將以 0 分計算。</span></li>
